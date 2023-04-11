@@ -62,7 +62,7 @@ resource "random_pet" "random_bucket_name" {
 data "archive_file" "object" {
   type = "zip"
 
-  source_dir  = "${path.module}/prefix/object.txt"
+  source_dir  = "${path.module}/prefix"
   output_path = "${path.module}/object.zip"
 }
 
