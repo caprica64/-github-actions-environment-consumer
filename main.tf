@@ -1,28 +1,6 @@
 # Copyright (c) HashiCorp, Inc.
 # SPDX-License-Identifier: MPL-2.0
 
-# terraform {
-#   required_providers {
-#     aws = {
-#       source  = "hashicorp/aws"
-#       version = "4.52.0"
-#     }
-#     random = {
-#       source  = "hashicorp/random"
-#       version = "3.4.3"
-#     }
-#   }
-#   required_version = ">= 1.1.0"
-# 
-#   cloud {
-#     organization = "caprica"
-# 
-#     workspaces {
-#       name = "GitHub-Actions-Environments-dev"
-#     }
-#   }
-# }
-
 terraform {
   required_providers {
     aws = {
@@ -35,16 +13,38 @@ terraform {
     }
   }
   required_version = ">= 1.1.0"
-  
-  backend "remote" {
-    hostname = "app.terraform.io"
+
+  cloud {
     organization = "caprica"
 
     workspaces {
-      prefix = "GitHub-Actions-Environments-consumer-"
+      name = "GitHub-Actions-Environments-dev"
     }
   }
 }
+
+# terraform {
+#   required_providers {
+#     aws = {
+#       source  = "hashicorp/aws"
+#       version = "4.52.0"
+#     }
+#     random = {
+#       source  = "hashicorp/random"
+#       version = "3.4.3"
+#     }
+#   }
+#   required_version = ">= 1.1.0"
+#   
+#   backend "remote" {
+#     hostname = "app.terraform.io"
+#     organization = "caprica"
+# 
+#     workspaces {
+#       prefix = "GitHub-Actions-Environments-consumer-"
+#     }
+#   }
+# }
 
 
 #TO-DO set up above to Cloud {} and use GitHub env vars
