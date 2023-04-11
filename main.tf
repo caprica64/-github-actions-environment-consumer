@@ -59,11 +59,18 @@ resource "random_pet" "random_bucket_name" {
   length = 1
 }
 
+data "archive_file" "object" {
+  type = "zip"
+
+  source_dir  = "${path.module}/object.txt"
+  output_path = "${path.module}/object.zip"
+}
+
 resource "aws_s3_object" "s3-object" {
   bucket = "github-actions-dev-tahr" ##TODO < remove hardcoded and use import from another state #aws_s3_bucket.s3_bucket.id
 
   key    = "object.txt"
-  source = data.archive_file.lambda-handle-inventory.output_path
+  source = data.archive_file.object.output_path
 
-  etag = filemd5(data.archive_file.lambda-handle-inventory.output_path)
+  etag = filemd5(data.archive_file.object.output_path)
 }
