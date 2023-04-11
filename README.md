@@ -7,5 +7,8 @@ This repository has a simple S3 object based on another bucket S3 created from t
 
 ## To-Do
 [X] Change the Terraform backend model from remote style to cloud {} style.
-
 [X] Complete the read me file update.
+
+## Terraform Cloud sharing state reference
+
+[image]: Terraform_reference.png "Terraform Reference" 
