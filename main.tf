@@ -47,7 +47,7 @@ terraform {
 }
 
 
-data "terraform_remote_state" "network" {
+data "terraform_remote_state" "bucket" {
   backend = "remote"
 
   config = {
@@ -74,7 +74,7 @@ data "archive_file" "object" {
 
 resource "aws_s3_object" "s3-object" {
   
-  bucket = data.terraform_remote_state.outputs.s3_bucket_name
+  bucket = data.terraform_remote_state.bucket.outputs.s3_bucket_name
   #bucket = "github-actions-dev-tahr" # <<- Previous hardcoded between different workspaces.
 
   key    = "object.zip"
