@@ -47,16 +47,23 @@ terraform {
 }
 
 
-#TO-DO set up above to Cloud {} and use GitHub env vars
+data "terraform_remote_state" "network" {
+  backend = "remote"
+
+  config = {
+    organization = "caprica"
+    workspaces = {
+          name = "GitHub-Actions-Environments-Dev" #<<-this hardcoded can be provided 
+          as variables. This is left for another project.
+    }
+  }
+}
+
+#TO-DO set up above to Cloud {} and use GitHub env vars. I am considering making it another project similar to this.
 
 
 provider "aws" {
   region = "us-east-1"
-}
-
-resource "random_pet" "random_bucket_name" {
-  prefix = "github-actions-${var.environment}"
-  length = 1
 }
 
 data "archive_file" "object" {
@@ -67,7 +74,8 @@ data "archive_file" "object" {
 }
 
 resource "aws_s3_object" "s3-object" {
-  bucket = "github-actions-dev-tahr" ##TODO < remove hardcoded and use import from another state #aws_s3_bucket.s3_bucket.id
+  
+  #bucket = "github-actions-dev-tahr" # <<- Previous hardcoded between different workspaces.
 
   key    = "object.zip"
   source = data.archive_file.object.output_path
