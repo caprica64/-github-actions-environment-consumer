@@ -11,4 +11,4 @@ This repository has a simple S3 object based on another bucket S3 created from t
 
 ## Terraform Cloud sharing state reference
 
-![image]: Terraform_reference.png "Terraform Reference" 
+![Terraform Cloud reference](Terraform_reference.png)
