@@ -1,2 +1,1 @@
-# -github-actions-environment-consumer
-This repo is the consumer Terraform state var from the parent >  github-actions-environment
+# This is a text object sample file to S3 Terraform test
