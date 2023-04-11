@@ -69,7 +69,7 @@ data "archive_file" "object" {
 resource "aws_s3_object" "s3-object" {
   bucket = "github-actions-dev-tahr" ##TODO < remove hardcoded and use import from another state #aws_s3_bucket.s3_bucket.id
 
-  key    = "object.txt"
+  key    = "object.zip"
   source = data.archive_file.object.output_path
 
   etag = filemd5(data.archive_file.object.output_path)
